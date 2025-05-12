@@ -48,14 +48,14 @@ class WeatherDetails extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+          filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
           child: Container(
             padding: EdgeInsets.all(isLandscape ? 20 : 25),
             decoration: BoxDecoration(
               color: Colors.white.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: Colors.white.withValues(alpha: 0.3),
                 width: 0.5,
               ),
               boxShadow: [
@@ -119,7 +119,7 @@ class WeatherDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      '${temperature.toStringAsFixed(1)}${provider.temperatureUnitSymbol}',
+                      '${temperature.round()}${provider.temperatureUnitSymbol}',
                       style: const TextStyle(
                         fontSize: 66,
                         fontWeight: FontWeight.bold,
@@ -127,7 +127,7 @@ class WeatherDetails extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '${minTemp.toStringAsFixed(1)} - ${maxTemp.toStringAsFixed(1)}${provider.temperatureUnitSymbol}',
+                      '${minTemp.round()} - ${maxTemp.round()}${provider.temperatureUnitSymbol}',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white.withValues(alpha: 0.9),
@@ -188,7 +188,7 @@ class WeatherDetails extends StatelessWidget {
               Consumer<WeatherProvider>(
                 builder: (context, provider, child) {
                   return Text(
-                    '${temperature.toStringAsFixed(1)}${provider.temperatureUnitSymbol}',
+                    '${temperature.round()}${provider.temperatureUnitSymbol}',
                     style: const TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
@@ -216,10 +216,8 @@ class WeatherDetails extends StatelessWidget {
                 _buildInfoItemWithRange('Pressure', '$pressure hPa',
                     '$minPressure - $maxPressure hPa'),
                 const SizedBox(height: 6),
-                _buildInfoItemWithRange(
-                    'Wind',
-                    '${windSpeed.toStringAsFixed(1)} km/h',
-                    '${minWindSpeed.toStringAsFixed(1)} - ${maxWindSpeed.toStringAsFixed(1)} km/h'),
+                _buildInfoItemWithRange('Wind', '${windSpeed.round()} km/h',
+                    '${minWindSpeed.round()} - ${maxWindSpeed.round()} km/h'),
                 const SizedBox(height: 8),
                 _buildStatusBadge(),
               ],
@@ -241,8 +239,8 @@ class WeatherDetails extends StatelessWidget {
         _buildInfoItemWithRange(
             'Pressure', '$pressure hPa', '$minPressure - $maxPressure hPa'),
         const SizedBox(height: 8),
-        _buildInfoItemWithRange('Wind', '${windSpeed.toStringAsFixed(1)} km/h',
-            '${minWindSpeed.toStringAsFixed(1)} - ${maxWindSpeed.toStringAsFixed(1)} km/h'),
+        _buildInfoItemWithRange('Wind', '${windSpeed.round()} km/h',
+            '${minWindSpeed.round()} - ${maxWindSpeed.round()} km/h'),
       ],
     );
   }

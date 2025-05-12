@@ -8,6 +8,13 @@ import 'widgets/error_view.dart';
 import 'widgets/day_selector.dart';
 import 'package:intl/intl.dart';
 
+// Define the display mode enum
+enum DisplayMode {
+  auto,
+  day,
+  night,
+}
+
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
 
@@ -16,6 +23,9 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  // Default to auto mode
+  DisplayMode _displayMode = DisplayMode.auto;
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +60,105 @@ class _WeatherPageState extends State<WeatherPage> {
     provider.toggleTemperatureUnit();
   }
 
+  // Cycle through display modes
+  void _cycleDisplayMode() {
+    setState(() {
+      switch (_displayMode) {
+        case DisplayMode.auto:
+          _displayMode = DisplayMode.day;
+          break;
+        case DisplayMode.day:
+          _displayMode = DisplayMode.night;
+          break;
+        case DisplayMode.night:
+          _displayMode = DisplayMode.auto;
+          break;
+      }
+    });
+  }
+
+  // Get the display mode icon
+  IconData _getDisplayModeIcon() {
+    switch (_displayMode) {
+      case DisplayMode.auto:
+        return Icons.brightness_auto;
+      case DisplayMode.day:
+        return Icons.wb_sunny;
+      case DisplayMode.night:
+        return Icons.nightlight_round;
+    }
+  }
+
+  // Get the display mode text
+  String _getDisplayModeText() {
+    switch (_displayMode) {
+      case DisplayMode.auto:
+        return 'Auto';
+      case DisplayMode.day:
+        return 'Day';
+      case DisplayMode.night:
+        return 'Night';
+    }
+  }
+
+  String _getBackgroundImage(WeatherProvider provider) {
+    // Get weather condition
+    String weatherCondition = provider.isToday
+        ? provider.currentWeatherDescription.toLowerCase()
+        : provider.selectedDay?.weatherDescription.toLowerCase() ?? 'clear sky';
+
+    // Determine if it's day or night based on the display mode
+    String timeFolder;
+
+    switch (_displayMode) {
+      case DisplayMode.auto:
+        // Automatic mode based on time
+        final now = DateTime.now();
+        final hour = now.hour;
+        final isDay = hour >= 6 && hour < 18; // Consider 6 AM to 6 PM as day
+        timeFolder = isDay ? 'day' : 'night';
+        break;
+      case DisplayMode.day:
+        timeFolder = 'day';
+        break;
+      case DisplayMode.night:
+        timeFolder = 'night';
+        break;
+    }
+
+    // Map weather condition to image name
+    String imageName;
+
+    if (weatherCondition.contains('clear')) {
+      imageName = 'clear_sky_weather.png';
+    } else if (weatherCondition.contains('few clouds')) {
+      imageName = 'few_clouds_weather.png';
+    } else if (weatherCondition.contains('scattered clouds')) {
+      imageName = 'scattered_clouds_weather.png';
+    } else if (weatherCondition.contains('broken clouds') ||
+        weatherCondition.contains('overcast')) {
+      imageName = 'broken_clouds_weather.png';
+    } else if (weatherCondition.contains('shower rain') ||
+        weatherCondition.contains('drizzle')) {
+      imageName = 'shower_rain_weather.png';
+    } else if (weatherCondition.contains('rain')) {
+      imageName = 'rain_weather.png';
+    } else if (weatherCondition.contains('thunderstorm')) {
+      imageName = 'thunderstorm_weather.png';
+    } else if (weatherCondition.contains('snow')) {
+      imageName = 'snow_weather.png';
+    } else if (weatherCondition.contains('mist') ||
+        weatherCondition.contains('fog') ||
+        weatherCondition.contains('haze')) {
+      imageName = 'mist_weather.png';
+    } else {
+      // Default image
+      imageName = 'clear_sky_weather.png';
+    }
+
+    return 'assets/weather_backgrounds/$timeFolder/$imageName';
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLandscape =
@@ -58,9 +167,9 @@ class _WeatherPageState extends State<WeatherPage> {
     return Consumer<WeatherProvider>(
       builder: (context, provider, child) {
         return Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/weather_backgrounds/clear_weather.png'),
+              image: AssetImage(_getBackgroundImage(provider)),
               fit: BoxFit.cover,
               alignment: Alignment.center,
             ),
@@ -72,6 +181,35 @@ class _WeatherPageState extends State<WeatherPage> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
+              leading: InkWell(
+                onTap: _cycleDisplayMode,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          _getDisplayModeIcon(),
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        Text(
+                          _getDisplayModeText(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               title: GestureDetector(
                 onTap: _showCitySearchDialog,
                 child: Container(
