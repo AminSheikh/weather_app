@@ -263,14 +263,14 @@ class WeatherDetails extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
               color: Colors.white,
               shadows: [
                 Shadow(
                   offset: const Offset(0.5, 0.5),
-                  blurRadius: 2.0,
-                  color: Colors.black.withValues(alpha: 0.4),
+                  blurRadius: 10.0,
+                  color: Colors.grey.withValues(alpha: 0.2),
                 ),
               ],
             ),
@@ -289,8 +289,9 @@ class WeatherDetails extends StatelessWidget {
               Text(
                 range,
                 style: TextStyle(
-                  fontSize: 11,
+                  fontSize: 12,
                   fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w500,
                   color: Colors.white.withValues(alpha: 0.8),
                 ),
               ),

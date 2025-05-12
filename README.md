@@ -2,33 +2,6 @@
 
 <img src="screenshots/app_screenshot.png" alt="Weather App Screenshot" width="300">
 
-<video width="300" controls>
-  <source src="demo/app_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-## App Demo
-
-You can include a video demo in several ways:
-
-1. Using a GIF (most compatible):
-   ```
-   ![App Demo](demo/app_demo.gif)
-   ```
-
-2. Using HTML video tag:
-   ```html
-   <video width="320" height="240" controls>
-     <source src="demo/app_demo.mp4" type="video/mp4">
-     Your browser does not support the video tag.
-   </video>
-   ```
-
-3. Link to YouTube:
-   ```
-   [![App Demo](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)
-   ```
-
 ## Features
 
 - **Current Weather Data**: Get up-to-date information about the current weather conditions including temperature, humidity, wind speed, and pressure
