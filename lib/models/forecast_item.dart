@@ -42,7 +42,7 @@ class ForecastItem {
       clouds: json['clouds'] != null ? Clouds.fromJson(json['clouds']) : null,
       wind: json['wind'] != null ? Wind.fromJson(json['wind']) : null,
       visibility: json['visibility'],
-      pop: json['pop'] != null ? json['pop'].toDouble() : null,
+      pop: json['pop']?.toDouble(),
       rain: json.containsKey('rain') ? Rain.fromJson(json['rain']) : null,
       sys: json['sys'] != null ? Sys.fromJson(json['sys']) : null,
       dtTxt: json['dt_txt'],

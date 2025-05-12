@@ -23,16 +23,15 @@ class MainInfo {
 
   factory MainInfo.fromJson(Map<String, dynamic> json) {
     return MainInfo(
-      temp: json['temp'] != null ? json['temp'].toDouble() : null,
-      feelsLike:
-          json['feels_like'] != null ? json['feels_like'].toDouble() : null,
-      tempMin: json['temp_min'] != null ? json['temp_min'].toDouble() : null,
-      tempMax: json['temp_max'] != null ? json['temp_max'].toDouble() : null,
+      temp: json['temp']?.toDouble(),
+      feelsLike: json['feels_like']?.toDouble(),
+      tempMin: json['temp_min']?.toDouble(),
+      tempMax: json['temp_max']?.toDouble(),
       pressure: json['pressure'],
       seaLevel: json['sea_level'],
       grndLevel: json['grnd_level'],
       humidity: json['humidity'],
-      tempKf: json['temp_kf'] != null ? json['temp_kf'].toDouble() : null,
+      tempKf: json['temp_kf']?.toDouble(),
     );
   }
 }
