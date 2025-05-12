@@ -1,63 +1,58 @@
-# Weather App
+# Weather Forecast App
 
-A Flutter weather application that displays current and forecasted weather conditions with dynamic background images based on weather conditions and time of day.
+![Weather App Screenshot](screenshots/app_screenshot.png)
 
-## Weather Background Images
+## Features
 
-This application uses different background images based on weather conditions and time of day (day/night). Please organize the images in the following folder structure:
+- **Current Weather Data**: Get up-to-date information about the current weather conditions including temperature, humidity, wind speed, and pressure
+- **5-Day Forecast**: Plan ahead with detailed forecasts for the next five days
+- **City Search**: Look up weather information for any city around the world
+- **Beautiful UI**: Dynamic backgrounds that change based on weather conditions
+- **Day/Night Mode**: Automatic theme switching based on time of day or manual override
+- **Temperature Units**: Toggle between Celsius and Fahrenheit with a single tap
+
+## Requirements
+
+- Flutter 3.0.0 or higher
+- Dart 2.17.0 or higher
+- OpenWeatherMap API key
+
+## Getting Started
+
+1. Clone this repository
+2. Run `flutter pub get` to install dependencies
+3. Add your OpenWeatherMap API key in `lib/utils/constants.dart`
+4. Run the app using `flutter run`
+
+## Technical Implementation
+
+This app follows a structured architecture that separates concerns and makes the codebase maintainable:
+
+### Directory Structure
 
 ```
-assets/
-└── weather_backgrounds/
-    ├── day/
-    │   ├── clear_sky_weather.png
-    │   ├── few_clouds_weather.png
-    │   ├── scattered_clouds_weather.png
-    │   ├── broken_clouds_weather.png
-    │   ├── shower_rain_weather.png
-    │   ├── rain_weather.png
-    │   ├── thunderstorm_weather.png
-    │   ├── snow_weather.png
-    │   └── mist_weather.png
-    └── night/
-        ├── clear_sky_weather.png
-        ├── few_clouds_weather.png
-        ├── scattered_clouds_weather.png
-        ├── broken_clouds_weather.png
-        ├── shower_rain_weather.png
-        ├── rain_weather.png
-        ├── thunderstorm_weather.png
-        ├── snow_weather.png
-        └── mist_weather.png
+lib/
+├── main.dart
+├── models/       # Data models
+├── providers/    # State management
+├── screens/      # UI components
+├── services/     # API and business logic
+└── utils/        # Utilities and constants
 ```
 
-### Weather Conditions
+### Key Components
 
-1. `clear_sky_weather.png` - For clear sky conditions
-2. `few_clouds_weather.png` - For few clouds conditions
-3. `scattered_clouds_weather.png` - For scattered clouds conditions
-4. `broken_clouds_weather.png` - For broken or overcast clouds conditions
-5. `shower_rain_weather.png` - For shower rain or drizzle conditions
-6. `rain_weather.png` - For rain conditions
-7. `thunderstorm_weather.png` - For thunderstorm conditions
-8. `snow_weather.png` - For snow conditions
-9. `mist_weather.png` - For mist, fog, or haze conditions
+- **Models**: Clean, type-safe representation of API responses
+- **Provider Pattern**: Efficient state management using the Provider package
+- **OpenWeatherMap API**: Real-time data from a reliable weather service
+- **Responsive UI**: Adapts perfectly to different screen sizes and orientations
 
-## Day/Night Detection
+## Design Choices
 
-The app automatically detects whether it's day or night based on the current time:
-- Day: 6:00 AM to 5:59 PM
-- Night: 6:00 PM to 5:59 AM
+I wanted to create a visually appealing app that feels natural to use. The weather backgrounds change dynamically based on current conditions, giving users immediate visual cues about the weather. The UI elements are purposefully minimal to keep focus on the important information.
 
-## How It Works
+For the code architecture, I chose the Provider pattern for state management as it offers a good balance between simplicity and power. The separation between UI components and business logic makes the app easier to test and maintain.
 
-The application dynamically changes the background image based on:
-1. The current weather condition retrieved from the OpenWeatherMap API
-2. The time of day (day or night)
+## Acknowledgements
 
-## Installation
-
-1. Clone the repository
-2. Create the folder structure and add the required weather background images
-3. Run `flutter pub get` to install dependencies
-4. Run `flutter run` to start the application
+This project uses the OpenWeatherMap API for weather data. Icons and background images are designed to create an immersive weather experience.
