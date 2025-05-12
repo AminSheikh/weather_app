@@ -74,12 +74,15 @@ class DayItem extends StatelessWidget {
                   imageUrl: iconUrl,
                   width: 28,
                   height: 28,
-                  placeholder: (context, url) => const SizedBox(
+                  placeholder: (context, url) => SizedBox(
                     width: 20,
                     height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.0,
-                      color: Colors.white,
+                    child: Transform.scale(
+                      scale: 0.5,
+                      child: const CircularProgressIndicator(
+                        strokeWidth: 2.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   errorWidget: (context, url, error) => const Icon(
@@ -175,12 +178,15 @@ class DayItem extends StatelessWidget {
               imageUrl: iconUrl,
               width: 40,
               height: 30,
-              placeholder: (context, url) => const SizedBox(
+              placeholder: (context, url) => SizedBox(
                 width: 20,
                 height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.0,
-                  color: Colors.white,
+                child: Transform.scale(
+                  scale: 0.5,
+                  child: const CircularProgressIndicator(
+                    strokeWidth: 2.0,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               errorWidget: (context, url, error) => const Icon(

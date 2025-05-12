@@ -7,11 +7,11 @@ import 'screens/weather/weather_page.dart';
 void main() async {
   // Load environment variables from .env file
   await dotenv.load();
-  runApp(const MyApp());
+  runApp(const WeatherApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WeatherApp extends StatelessWidget {
+  const WeatherApp({super.key});
 
   @override
   Widget build(BuildContext context) {
