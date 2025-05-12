@@ -1,6 +1,6 @@
 # Weather Forecast App
 
-![Weather App Screenshot](screenshots/app_screenshot.png)
+<img src="screenshots/app_screenshot.png" alt="Weather App Screenshot" style="max-height: 500px;">
 
 ## Features
 
