@@ -21,7 +21,10 @@
 
 1. Clone this repository
 2. Run `flutter pub get` to install dependencies
-3. Add your OpenWeatherMap API key in `lib/utils/constants.dart`
+3. Create a `.env` file in the root directory with the following content:
+   ```
+   OPENWEATHERMAP_API_KEY=your_api_key_here
+   ```
 4. Run the app using `flutter run`
 
 ## Technical Implementation
@@ -46,6 +49,7 @@ lib/
 - **Provider Pattern**: Efficient state management using the Provider package
 - **OpenWeatherMap API**: Real-time data from a reliable weather service
 - **Responsive UI**: Adapts perfectly to different screen sizes and orientations
+- **Environment Variables**: Secure storage of API keys using .env file
 
 ## Design Choices
 

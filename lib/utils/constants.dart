@@ -1,6 +1,8 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class AppConstants {
-  // Add your OpenWeatherMap API key here
-  static const String apiKey = '9e318b8220efc089deea0668e1917100';
+  // Get API key from environment file
+  static String get apiKey => dotenv.env['OPENWEATHERMAP_API_KEY'] ?? '';
 
   // Units for temperature
   static const String metric = 'metric'; // Celsius
